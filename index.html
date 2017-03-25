@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+<style>
+body, html {
+    height: 100%;
+    font-family: "Inconsolata", sans-serif;
+}
+.bgimg {
+    background-position: center;
+    background-size: cover;
+    background-image: url("blind.jpg");
+    min-height: 60%;
+}
+.menu {
+    display: none;
+}
+
+#main{
+			width: 100vw;
+			height: 100vh;
+			background-color: black;
+			color: white;
+		}
+</style>
+
+<body onclick = sun()>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="main.js"></script>
+	<script src="key.js"></script>
+	<script type="text/javascript" src="webcam.js"></script>
+	<script>
+		/*function hell(){
+		window.location.href = "main1.php";
+		console.log("hello");
+	}*/
+		function sun(){
+			var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+			recognition.lang = 'en-IN';
+			recognition.interimResults = false;
+			recognition.maxAlternatives = 5;
+			recognition.start();
+
+			console.log("yeuu ");
+
+			recognition.onresult = function(event) {
+			    console.log('You said: ', event.results[0][0].transcript);
+			    if(event.results[0][0].transcript=="hello" || event.results[0][0].transcript=="saloni" ){
+			    	 window.location.assign("webcam.html")
+			    	 //video_s();
+					//console.log("jjjjdd ");
+			    	}
+				else if(event.results[0][0].transcript=="change" || event.results[0][0].transcript=="saloni" ){
+			    	  window.location.assign("sensor.php")
+			    	// video_s();
+					
+			    	}
+				else
+					window.location.assign("sensor.php")
+			};
+		}
+		
+	</script>
+
+</script>
+
+
+
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
+   
+</header>
+
+<!-- Add a background color and large text to the whole page -->
+<div class="w3-sand w3-grayscale w3-large">
+
+<!-- About Container -->
+<div class="w3-container" id="about">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-50"><span class="w3-tag w3-wide">AID FOR BLIND</span></h5>
+    <p>TAP TO ENTER</p>
+   
+    
+    
+
+</body>
+
+<video autoplay></video>
+</html>
