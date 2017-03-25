@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Capturing environment</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+	img {
+      		max-width:100%;
+    	}
+
+	video {
+    position: fixed; right: 0; bottom: 0;
+    min-width: 100%; min-height: 100%;
+    width: auto; height: auto; z-index: -100;
+    background: url(polina.jpg) no-repeat;
+    background-size: cover;
+}
+</style>
+
+</head>
+
+<body>
+<video autoplay></video>                
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="main.js"></script>
+	<script src="key.js"></script>
+	<script type="text/javascript" src="webcam.js"></script>
+	<script>
+
+	(function() {
+		'use strict';                                           // to ask if user allows his webcam to be used
+    		 var video = document.querySelector('video'), canvas;
+
+             function pic() {
+   	         var imag = document.querySelector('img') || document.createElement('img');
+		         var context;
+		         var width = video.offsetWidth, height = video.offsetHeight;
+
+			 canvas = canvas || document.createElement('canvas');
+			 canvas.width = width;
+			 canvas.height = height;
+
+			 context = canvas.getContext('2d');
+			 context.drawImage(video, 0, 0, width, height);
+
+			 imag.src = canvas.toDataURL('image/png');
+			// document.body.appendChild(imag);
+			 // console.log('hello');
+			 processFile(imag.src);
+			 // console.log(imag.src);
+      		}
+
+ 
+	       if (navigator.mediaDevices) {
+	      		navigator.mediaDevices.getUserMedia({video: true})
+	    
+		        .then(function(stream) {
+			  	video.src = window.URL.createObjectURL(stream);
+			  	video.addEventListener('click', pic);
+		        })
+	       
+	       		.catch(function(error) {
+	       			document.body.textContent = 'Camera cannot be accessed. Error: ' + error.name;
+	       		});
+	       }
+      })();
+
+
+	
+      
+
+
+</script>
+</body>
+</html>
